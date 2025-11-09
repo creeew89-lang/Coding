@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Jungle Adventure - Complete Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Jungle Color Palette */
+            --deep-forest: #1a2e1a;
+            --jungle-green: #2d5a2d;
+            --vibrant-green: #4a7c4a;
+            --leaf-green: #6b9b6b;
+            --earth-brown: #8b4513;
+            --warm-beige: #f5e6d3;
+            --golden-sun: #daa520;
+            --misty-white: #f8f8f0;
+            --shadow-dark: #0f1a0f;
+            
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 120px 0;
+            --container-max: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--deep-forest) 0%, var(--jungle-green) 100%);
+            color: var(--misty-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav-jungle {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 46, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--vibrant-green);
+        }
+
+        .nav-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--golden-sun);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--misty-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--golden-sun);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--golden-sun);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-jungle {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(26, 46, 26, 0.7), rgba(45, 90, 45, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="jungle" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="2" fill="%234a7c4a" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23jungle)"/></svg>');
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: var(--golden-sun);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--misty-white);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--golden-sun), #b8860b);
+            color: var(--deep-forest);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--golden-sun);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--vibrant-green), var(--golden-sun));
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--warm-beige);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Content Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, rgba(74, 124, 74, 0.1), rgba(107, 155, 107, 0.1));
+            border: 1px solid rgba(74, 124, 74, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--golden-sun), var(--vibrant-green));
+        }
+
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--golden-sun);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--golden-sun);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            color: var(--misty-white);
+            line-height: 1.7;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--shadow-dark);
+            border: 1px solid var(--vibrant-green);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--vibrant-green);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .code-block code {
+            color: var(--misty-white);
+            line-height: 1.5;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: rgba(74, 124, 74, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px dashed var(--vibrant-green);
+        }
+
+        .demo-button {
+            background: linear-gradient(45deg, var(--vibrant-green), var(--leaf-green));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(74, 124, 74, 0.4);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 46, 26, 0.9);
+            border-radius: 15px;
+            padding: 1rem;
+            border: 1px solid var(--vibrant-green);
+            z-index: 100;
+        }
+
+        .progress-item {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(74, 124, 74, 0.3);
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .progress-item.active {
+            background: var(--golden-sun);
+            transform: scale(1.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .progress-tracker {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Jungle Decorations */
+        .jungle-decoration {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .leaf-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 4rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .leaf-2 {
+            top: 60%;
+            right: 10%;
+            font-size: 3rem;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        .vine-1 {
+            top: 20%;
+            right: 5%;
+            font-size: 5rem;
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-jungle">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">🌿 Java Jungle</a>
+            <ul class="nav-links">
+                <li><a href="#welcome">Welcome</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#objects">Objects</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#variables">Variables</a></li>
+                <li><a href="#control">Control Flow</a></li>
+                <li><a href="#inheritance">Inheritance</a></li>
+                <li><a href="#encapsulation">Encapsulation</a></li>
+                <li><a href="#polymorphism">Polymorphism</a></li>
+                <li><a href="#exceptions">Exceptions</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#quest">Final Quest</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="progress-item active" data-section="welcome"></div>
+        <div class="progress-item" data-section="classes"></div>
+        <div class="progress-item" data-section="objects"></div>
+        <div class="progress-item" data-section="methods"></div>
+        <div class="progress-item" data-section="variables"></div>
+        <div class="progress-item" data-section="control"></div>
+        <div class="progress-item" data-section="inheritance"></div>
+        <div class="progress-item" data-section="encapsulation"></div>
+        <div class="progress-item" data-section="polymorphism"></div>
+        <div class="progress-item" data-section="exceptions"></div>
+        <div class="progress-item" data-section="collections"></div>
+        <div class="progress-item" data-section="quest"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-jungle">
+        <div class="jungle-decoration leaf-1">🍃</div>
+        <div class="jungle-decoration vine-1">🌿</div>
+        <div class="hero-content animate-fade-in">
+            <h1 class="hero-title">Java Jungle Adventure</h1>
+            <p class="hero-subtitle">Master Java Programming Through an Epic Jungle Journey</p>
+            <a href="#welcome" class="hero-cta">Start Your Adventure</a>
+        </div>
+    </section>
+
+    <!-- Section 1: Welcome to Java Jungle -->
+    <section id="welcome" class="section">
+        <div class="jungle-decoration leaf-2">🌿</div>
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Welcome to Java Jungle</h2>
+                <p class="section-description">
+                    Embark on an exciting journey through the dense forests of Java programming. 
+                    Like explorers of old, we'll navigate through mysterious territories, discover hidden treasures, 
+                    and master the ancient arts of object-oriented programming.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🗺️</div>
+                    <h3 class="card-title">Your Jungle Map</h3>
+                    <div class="card-content">
+                        <p>Java is a vast ecosystem waiting to be explored. From the towering Class Trees to the flowing Control Flow Rivers, each concept builds upon the last, creating a rich landscape of programming knowledge.</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>public class JungleExplorer {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Welcome to the Java Jungle!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                        
+                        <p><strong>Why Java Matters:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Platform independence - "Write once, run anywhere"</li>
+                            <li>Object-oriented paradigm for organized code</li>
+                            <li>Robust ecosystem with extensive libraries</li>
+                            <li>Industry standard for enterprise applications</li>
+                            <li>Strong community support and resources</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🎒</div>
+                    <h3 class="card-title">Explorer's Toolkit</h3>
+                    <div class="card-content">
+                        <p>Before we venture deep into the jungle, let's pack our essential tools. Every Java explorer needs these fundamental concepts in their backpack:</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">Interactive: Your First Java Steps</h4>
+                            <p>Click the button below to see your first Java program in action!</p>
+                            <button class="demo-button" onclick="showWelcomeMessage()">Run Welcome Program</button>
+                            <div id="welcome-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <strong>Output:</strong> Welcome to the Java Jungle! 🌿
+                            </div>
+                        </div>
+                        
+                        <p><strong>Essential Concepts We'll Master:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Classes and Objects - The foundation of OOP</li>
+                            <li>Methods and Variables - Actions and data</li>
+                            <li>Control Structures - Decision making and loops</li>
+                            <li>Inheritance and Polymorphism - Code reuse and flexibility</li>
+                            <li>Exception Handling - Managing errors gracefully</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Class Tree -->
+    <section id="classes" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">The Class Tree</h2>
+                <p class="section-description">
+                    In the Java jungle, classes are like mighty trees. They have roots (fields), branches (methods), 
+                    and provide the structure for everything that grows in our programming ecosystem.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🌳</div>
+                    <h3 class="card-title">What is a Class?</h3>
+                    <div class="card-content">
+                        <p>A class is a blueprint for creating objects. Think of it as a tree template that defines what all trees of that type will look like and how they'll behave.</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>public class Tree {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Fields (branches and leaves)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;String type;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;int height;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;int age;<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Constructor (how the tree is born)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public Tree(String treeType, int initialHeight) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.type = treeType;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.height = initialHeight;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.age = 0;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Methods (what the tree can do)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void grow(int years) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.age += years;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.height += years * 2;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🌿</div>
+                    <h3 class="card-title">Class Components</h3>
+                    <div class="card-content">
+                        <p>Every class tree has essential parts that make it functional and beautiful:</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">Interactive: Build Your Tree</h4>
+                            <p>Create a custom tree by selecting its properties:</p>
+                            <select id="treeType" style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem;">
+                                <option value="Oak">Oak Tree</option>
+                                <option value="Pine">Pine Tree</option>
+                                <option value="Maple">Maple Tree</option>
+                            </select>
+                            <input id="treeHeight" type="number" placeholder="Initial height" style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem;">
+                            <button class="demo-button" onclick="createTree()">Plant Tree</button>
+                            <div id="tree-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <strong>Your Tree:</strong> <span id="treeDetails"></span>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Key Class Elements:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li><strong>Fields:</strong> Variables that store data (tree properties)</li>
+                            <li><strong>Constructors:</strong> Special methods that create objects</li>
+                            <li><strong>Methods:</strong> Functions that define behavior</li>
+                            <li><strong>Access Modifiers:</strong> Control visibility (public, private)</li>
+                            <li><strong>Static Members:</strong> Belong to the class itself</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Object Safari -->
+    <section id="objects" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Object Safari</h2>
+                <p class="section-description">
+                    Welcome to the Object Safari, where Java objects roam free like wild animals in the jungle! 
+                    Each object has its own behavior, state, and identity - just like real creatures in the wild.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🦁</div>
+                    <h3 class="card-title">What are Objects?</h3>
+                    <div class="card-content">
+                        <p>Objects are instances of classes - they're the living, breathing creatures in our Java jungle. Each object has:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// Creating objects from our Tree class<br>
+                            Tree oakTree = new Tree("Oak", 15);<br>
+                            Tree pineTree = new Tree("Pine", 25);<br>
+                            <br>
+                            // Each object has its own state<br>
+                            oakTree.grow(3);  // Oak tree grows 3 years<br>
+                            pineTree.grow(1); // Pine tree grows 1 year<br>
+                            <br>
+                            // Objects can interact with each other<br>
+                            System.out.println("Oak height: " + oakTree.height);<br>
+                            System.out.println("Pine height: " + pineTree.height);</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🐒</div>
+                    <h3 class="card-title">Object Safari Adventure</h3>
+                    <div class="card-content">
+                        <p>Let's explore the jungle and discover different types of objects!</p>
+                        
+                        <div class="interactive-demo" id="object-safari-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🌍 Interactive Safari</h4>
+                            <p>Click to release animals into the wild:</p>
+                            <button class="demo-button" onclick="spawnAnimal('Tiger')">🐅 Release Tiger</button>
+                            <button class="demo-button" onclick="spawnAnimal('Monkey')">🐒 Release Monkey</button>
+                            <button class="demo-button" onclick="spawnAnimal('Elephant')">🐘 Release Elephant</button>
+                            <button class="demo-button" onclick="releaseAllAnimals()">🌿 Release All Animals</button>
+                            
+                            <div id="safari-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Animal information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <p><strong>Object Characteristics:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li><strong>State:</strong> Data stored in fields (height, age, health)</li>
+                            <li><strong>Behavior:</strong> Actions performed by methods (grow(), makeSound())</li>
+                            <li><strong>Identity:</strong> Unique reference in memory</li>
+                            <li><strong>Lifecycle:</strong> Created, used, and eventually garbage collected</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Method Magic -->
+    <section id="methods" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Method Magic</h2>
+                <p class="section-description">
+                    Methods are the magical spells and tools that our jungle creatures can use. 
+                    They define what objects can do and how they interact with their environment.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🪄</div>
+                    <h3 class="card-title">Defining Methods</h3>
+                    <div class="card-content">
+                        <p>Methods are blocks of code that perform specific tasks. They're like magical spells that can be cast whenever needed.</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>public class MagicWand {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Method with parameters and return value<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public String castSpell(String spellName, int power) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (power > 10) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Powerful " + spellName + " activated!";<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return spellName + " cast successfully!";<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Method with no return value<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void recharge() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Wand recharged!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Method Magic Workshop</h3>
+                    <div class="card-content">
+                        <p>Practice your method magic with our interactive spell casting!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🪄 Spell Casting</h4>
+                            <p>Choose your magical spell:</p>
+                            <button class="demo-button" onclick="castMethodSpell('grow')">🌱 Growth Spell</button>
+                            <button class="demo-button" onclick="castMethodSpell('heal')">💚 Healing Spell</button>
+                            <button class="demo-button" onclick="castMethodSpell('transform')">🔄 Transform Spell</button>
+                            
+                            <div id="spell-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Spell effects will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">📚 Learn New Methods</h4>
+                            <p>Discover different types of methods:</p>
+                            <button class="demo-button" onclick="learnMethod('calculate')">Calculator Method</button>
+                            <button class="demo-button" onclick="learnMethod('compare')">Comparison Method</button>
+                            <button class="demo-button" onclick="learnMethod('describe')">Description Method</button>
+                            
+                            <div id="method-code-output" style="margin-top: 1rem; display: none;">
+                                <!-- Method code will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Variable Vines -->
+    <section id="variables" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Variable Vines</h2>
+                <p class="section-description">
+                    Variables are like swinging vines in our Java jungle - they can hold different values, 
+                    change over time, and connect different parts of our program together.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🌿</div>
+                    <h3 class="card-title">Types of Variables</h3>
+                    <div class="card-content">
+                        <p>Java has different types of variables, each designed for specific purposes:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// Primitive data types<br>
+                            int age = 25;                    // Whole numbers<br>
+                            double height = 5.9;            // Decimal numbers<br>
+                            boolean isExplorer = true;      // True or false<br>
+                            char grade = 'A';               // Single character<br>
+                            <br>
+                            // Reference types<br>
+                            String name = "Java Explorer";  // Text<br>
+                            Tree myTree = new Tree();       // Object reference<br>
+                            int[] scores = {95, 87, 92};    // Array<br>
+                            <br>
+                            // Variable scope examples<br>
+                            public class Explorer {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;String name;           // Instance variable<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;static int count;      // Class variable<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void explore() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int steps = 0;   // Local variable<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🦎</div>
+                    <h3 class="card-title">Variable Vine Swinging</h3>
+                    <div class="card-content">
+                        <p>Practice creating and using variables in our interactive vine playground!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🌿 Variable Types Explorer</h4>
+                            <p>Explore different variable types:</p>
+                            <button class="demo-button" onclick="swingVariable('primitive')">Primitive Vines</button>
+                            <button class="demo-button" onclick="swingVariable('reference')">Reference Vines</button>
+                            
+                            <div id="variable-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Variable information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">📝 Create Your Variable</h4>
+                            <p>Build your own variable:</p>
+                            <input type="text" id="varName" placeholder="Variable name" style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem;">
+                            <select id="varType" style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem;">
+                                <option value="String">String</option>
+                                <option value="int">int</option>
+                                <option value="double">double</option>
+                                <option value="boolean">boolean</option>
+                            </select>
+                            <input type="text" id="varValue" placeholder="Value" style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem;">
+                            <button class="demo-button" onclick="createVariable()">Create Variable</button>
+                            
+                            <div id="variable-declaration" style="margin-top: 1rem; display: none;">
+                                <!-- Variable declaration will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Control Flow River -->
+    <section id="control" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Control Flow River</h2>
+                <p class="section-description">
+                    The Control Flow River guides our program's journey through the jungle. 
+                    Like water flowing downstream, our code follows paths based on conditions and loops.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🌊</div>
+                    <h3 class="card-title">River Paths</h3>
+                    <div class="card-content">
+                        <p>Control flow statements direct the path of program execution:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// If-else decisions like river forks<br>
+                            int waterLevel = 7;<br>
+                            if (waterLevel > 8) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Dangerous rapids ahead!");<br>
+                            } else if (waterLevel > 5) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Moderate current - proceed with caution");<br>
+                            } else {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Calm waters - safe to cross");<br>
+                            }<br>
+                            <br>
+                            // Loops like whirlpools<br>
+                            for (int i = 0; i < 5; i++) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Paddling stroke " + i);<br>
+                            }<br>
+                            <br>
+                            // Switch statements like multiple tributaries<br>
+                            switch (riverDirection) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;case NORTH:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goNorth();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;case SOUTH:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goSouth();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;default:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stayPut();<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🚣</div>
+                    <h3 class="card-title">Navigate the River</h3>
+                    <div class="card-content">
+                        <p>Take control of your program's flow with our interactive river navigation!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🌊 River Navigation</h4>
+                            <p>Choose your path down the river:</p>
+                            <button class="demo-button" onclick="navigateRiver('if')">Decision Rapids</button>
+                            <button class="demo-button" onclick="navigateRiver('loop')">Whirlpool Loop</button>
+                            <button class="demo-button" onclick="navigateRiver('switch')">Branching Streams</button>
+                            
+                            <div id="flow-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Flow control information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🎯 Test Your Condition</h4>
+                            <p>Enter a condition to see how the river flows:</p>
+                            <input type="text" id="conditionInput" placeholder="e.g., waterLevel > 5" style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem; width: 200px;">
+                            <button class="demo-button" onclick="testCondition()">Test Condition</button>
+                            
+                            <div id="condition-result" style="margin-top: 1rem; display: none;">
+                                <!-- Condition result will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Inheritance Trail -->
+    <section id="inheritance" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Inheritance Trail</h2>
+                <p class="section-description">
+                    Follow the Inheritance Trail where classes pass down their traits and behaviors like family heirlooms. 
+                    Discover how parent classes share their wisdom with child classes.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🧬</div>
+                    <h3 class="card-title">Family Tree of Classes</h3>
+                    <div class="card-content">
+                        <p>Inheritance allows classes to inherit properties and methods from other classes, creating a hierarchy:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// Parent class - the ancestor<br>
+                            public class Animal {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;String name;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;int age;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void eat() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name + " is eating");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void sleep() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name + " is sleeping");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }<br>
+                            <br>
+                            // Child class - inherits from Animal<br>
+                            public class Tiger extends Animal {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;String stripePattern;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void roar() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name + " roars loudly!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void eat() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name + " hunts and eats prey");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🌳</div>
+                    <h3 class="card-title">Explore the Family Tree</h3>
+                    <div class="content">
+                        <p>Discover how inheritance creates relationships between classes:</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🧬 Inheritance Explorer</h4>
+                            <p>Explore different inheritance patterns:</p>
+                            <button class="demo-button" onclick="exploreInheritance('parent-child')">Family Tree</button>
+                            <button class="demo-button" onclick="exploreInheritance('interface')">Contract Inheritance</button>
+                            
+                            <div id="inheritance-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Inheritance information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🏛️ Build Your Family Tree</h4>
+                            <p>Create a class hierarchy:</p>
+                            <button class="demo-button" onclick="createFamilyTree()">Generate Family Tree</button>
+                            
+                            <div id="family-tree-output" style="margin-top: 1rem; display: none;">
+                                <!-- Family tree will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Encapsulation Cave -->
+    <section id="encapsulation" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Encapsulation Cave</h2>
+                <p class="section-description">
+                    Deep in the Encapsulation Cave, we hide our precious data and protect it from the outside world. 
+                    Only through proper channels can our secrets be revealed or modified.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🔐</div>
+                    <h3 class="card-title">Protecting the Cave</h3>
+                    <div class="card-content">
+                        <p>Encapsulation hides internal details and protects data integrity:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>public class TreasureChest {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Private fields - hidden from outside<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;private String contents;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;private boolean isLocked;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;private String password;<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Constructor<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public TreasureChest(String password) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.isLocked = true;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.password = password;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.contents = "Ancient Java Scroll";<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Public getter - controlled access<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public String getContents(String attempt) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (isLocked && !attempt.equals(password)) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Access denied! Wrong password.";<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return contents;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Public setter - controlled modification<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void setContents(String newContents, String attempt) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!isLocked || attempt.equals(password)) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.contents = newContents;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🗝️</div>
+                    <h3 class="card-title">Cave Access Control</h3>
+                    <div class="card-content">
+                        <p>Explore different levels of access control in our interactive cave:</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🔐 Access Levels</h4>
+                            <p>Try different access modifiers:</p>
+                            <button class="demo-button" onclick="accessCave('private')">🔒 Private Chamber</button>
+                            <button class="demo-button" onclick="accessCave('protected')">👨‍👩‍👧‍👦 Family Vault</button>
+                            <button class="demo-button" onclick="accessCave('public')">🌐 Grand Hall</button>
+                            
+                            <div id="encapsulation-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Access information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🔑 Key Methods</h4>
+                            <p>Use getters and setters to access protected data:</p>
+                            <button class="demo-button" onclick="useGetterSetter('health')">Health Property</button>
+                            <button class="demo-button" onclick="useGetterSetter('strength')">Strength Property</button>
+                            
+                            <div id="getter-setter-output" style="margin-top: 1rem; display: none;">
+                                <!-- Getter/setter code will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Polymorphism Pond -->
+    <section id="polymorphism" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Polymorphism Pond</h2>
+                <p class="section-description">
+                    At Polymorphism Pond, creatures take on many forms. The same action can have different effects 
+                    depending on who performs it - like magic shape-shifting in our Java jungle!
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🎭</div>
+                    <h3 class="card-title">Many Forms, One Interface</h3>
+                    <div class="card-content">
+                        <p>Polymorphism allows objects to take multiple forms while using the same interface:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// Interface - the common contract<br>
+                            interface AnimalSound {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;void makeSound();<br>
+                            }<br>
+                            <br>
+                            // Different implementations<br>
+                            class Tiger implements AnimalSound {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void makeSound() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("ROAR!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }<br>
+                            <br>
+                            class Monkey implements AnimalSound {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void makeSound() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("CHATTER!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }<br>
+                            <br>
+                            class Elephant implements AnimalSound {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void makeSound() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("TRUMPET!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }<br>
+                            <br>
+                            // Polymorphism in action<br>
+                            AnimalSound[] animals = {new Tiger(), new Monkey(), new Elephant()};<br>
+                            for (AnimalSound animal : animals) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;animal.makeSound(); // Same method, different results!<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🐉</div>
+                    <h3 class="card-title">Shape-Shifting Demo</h3>
+                    <div class="card-content">
+                        <p>Watch polymorphism in action with our interactive shape-shifting demonstration!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🎭 Shape-Shifting Forms</h4>
+                            <p>Explore different polymorphic forms:</p>
+                            <button class="demo-button" onclick="shapeShift('animal')">Animal Forms</button>
+                            <button class="demo-button" onclick="shapeShift('method')">Method Overloading</button>
+                            
+                            <div id="polymorphism-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Polymorphism information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🎪 Polymorphism Show</h4>
+                            <p>See polymorphism in action:</p>
+                            <button class="demo-button" onclick="demonstratePolymorphism()">Start the Show!</button>
+                            
+                            <div id="polymorphism-demo" style="margin-top: 1rem; display: none;">
+                                <!-- Polymorphism demonstration will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Exception Volcano -->
+    <section id="exceptions" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Exception Volcano</h2>
+                <p class="section-description">
+                    Beware the Exception Volcano! When our program encounters unexpected problems, 
+                    it erupts with errors. But with proper handling, we can prevent disasters and keep our code running smoothly.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🌋</div>
+                    <h3 class="card-title">Handling Eruptions</h3>
+                    <div class="card-content">
+                        <p>Exception handling helps us manage errors gracefully:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>public class VolcanoExplorer {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public void exploreVolcano() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Dangerous operation<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int temperature = getVolcanoTemperature();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (temperature > 1000) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw new VolcanoEruptionException("Too hot to proceed!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Safe to explore!");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (VolcanoEruptionException e) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Eruption detected: " + e.getMessage());<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;evacuateArea();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (Exception e) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Unexpected problem: " + e.getMessage());<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callForHelp();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} finally {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Exploration complete - checking equipment");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🛡️</div>
+                    <h3 class="card-title">Volcano Safety Training</h3>
+                    <div class="card-content">
+                        <p>Learn to handle different types of exceptions in our safety training simulator!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🌋 Trigger Eruptions</h4>
+                            <p>Simulate different exception scenarios:</p>
+                            <button class="demo-button" onclick="triggerEruption('nullpointer')">NullPointer Eruption</button>
+                            <button class="demo-button" onclick="triggerEruption('arraybounds')">ArrayIndex Eruption</button>
+                            <button class="demo-button" onclick="triggerEruption('arithmetic')">Arithmetic Eruption</button>
+                            
+                            <div id="exception-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Exception information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🛡️ Exception Handling</h4>
+                            <p>See proper exception handling in action:</p>
+                            <button class="demo-button" onclick="handleException()">Handle Exception</button>
+                            
+                            <div id="exception-handling" style="margin-top: 1rem; display: none;">
+                                <!-- Exception handling code will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Collections Camp -->
+    <section id="collections" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Collections Camp</h2>
+                <p class="section-description">
+                    Welcome to Collections Camp, where we organize and store our jungle supplies efficiently. 
+                    Learn how to manage groups of objects like a seasoned explorer!
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">📦</div>
+                    <h3 class="card-title">Storage Solutions</h3>
+                    <div class="card-content">
+                        <p>Java collections provide different ways to store and organize data:</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// Array - fixed-size storage<br>
+                            String[] explorerTools = {"compass", "map", "water", "rope"};<br>
+                            explorerTools[2] = "fresh water"; // Modify element<br>
+                            <br>
+                            // ArrayList - dynamic storage<br>
+                            ArrayList&lt;String&gt; backpack = new ArrayList&lt;&gt;();<br>
+                            backpack.add("compass");<br>
+                            backpack.add("map");<br>
+                            backpack.add("water");<br>
+                            backpack.remove("map"); // Remove item<br>
+                            backpack.add("energy bars"); // Add more items<br>
+                            <br>
+                            // HashMap - key-value storage<br>
+                            HashMap&lt;String, Integer&gt; supplyCount = new HashMap&lt;&gt;();<br>
+                            supplyCount.put("compass", 1);<br>
+                            supplyCount.put("water bottles", 3);<br>
+                            supplyCount.put("energy bars", 5);<br>
+                            <br>
+                            // Access values by key<br>
+                            int waterBottles = supplyCount.get("water bottles");</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🔍</div>
+                    <h3 class="card-title">Camp Organization</h3>
+                    <div class="card-content">
+                        <p>Practice organizing your camp supplies with our interactive tools!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🏕️ Organize Your Camp</h4>
+                            <p>Choose your storage method:</p>
+                            <button class="demo-button" onclick="organizeCamp('array')">Supply Array</button>
+                            <button class="demo-button" onclick="organizeCamp('arraylist')">Dynamic List</button>
+                            <button class="demo-button" onclick="organizeCamp('hashmap')">Inventory Map</button>
+                            
+                            <div id="collection-output" style="margin-top: 1rem; padding: 1rem; background: var(--shadow-dark); border-radius: 10px; display: none;">
+                                <!-- Collection information will appear here -->
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🔍 Search Your Supplies</h4>
+                            <p>Find items in your collection:</p>
+                            <input type="text" id="searchInput" placeholder="Search for supplies..." style="padding: 0.5rem; border-radius: 5px; margin: 0.5rem;">
+                            <button class="demo-button" onclick="searchSupplies()">Search</button>
+                            
+                            <div id="search-results" style="margin-top: 1rem; display: none;">
+                                <!-- Search results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Final Quest -->
+    <section id="quest" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <h2 class="section-title">Final Quest</h2>
+                <p class="section-description">
+                    Your ultimate challenge awaits! Use everything you've learned in the Java Jungle 
+                    to complete this epic quest and earn your Java Mastery Certificate.
+                </p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🗿</div>
+                    <h3 class="card-title">The Lost Temple of Code</h3>
+                    <div class="card-content">
+                        <p>Your mission: Build a comprehensive jungle explorer application using all the concepts you've learned!</p>
+                        
+                        <div class="code-block" data-lang="java">
+                            <code>// Your quest: Create a Jungle Explorer Game<br>
+                            public class JungleExplorerGame {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Use classes and objects<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Implement inheritance<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Add encapsulation<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Demonstrate polymorphism<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Handle exceptions<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Use collections<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;// Control program flow<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Your adventure begins here!<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Explorer player = new Explorer("Java Student");<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jungle jungle = new Jungle();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jungle.startAdventure(player);<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card animate-fade-in">
+                    <div class="card-icon">🏆</div>
+                    <h3 class="card-title">Your Adventure Awaits</h3>
+                    <div class="card-content">
+                        <p>Complete all challenges to earn your Java Mastery Certificate!</p>
+                        
+                        <div class="interactive-demo">
+                            <h4 style="color: var(--golden-sun); margin-bottom: 1rem;">🎯 Complete Your Quest</h4>
+                            <p>Start your final adventure:</p>
+                            <button class="demo-button" onclick="startQuest()">🚀 Begin Quest</button>
+                            
+                            <div id="quest-details" style="margin-top: 1rem; display: none;">
+                                <!-- Quest details will appear here -->
+                            </div>
+                        </div>
+                        
+                        <p><strong>Quest Objectives:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>🌳 Create a class hierarchy for jungle creatures</li>
+                            <li>🦁 Implement polymorphic behaviors for different animals</li>
+                            <li>🔒 Use encapsulation to protect sensitive data</li>
+                            <li>🌊 Handle exceptions that might occur during exploration</li>
+                            <li>📦 Store discovered items in appropriate collections</li>
+                            <li>🎮 Create an interactive game loop with control flow</li>
+                            <li>🏅 Bonus: Add special features using advanced concepts!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--deep-forest); padding: 2rem 0; text-align: center; border-top: 2px solid var(--vibrant-green);">
+        <div class="container">
+            <p style="color: var(--misty-white); font-size: 1.1rem;">
+                🌿 Congratulations on completing your Java Jungle Adventure! 🌿
+            </p>
+            <p style="color: var(--warm-beige); margin-top: 1rem;">
+                Continue your programming journey and explore new territories in the vast world of Java!
+            </p>
+            <div style="margin-top: 2rem; font-size: 2rem;">
+                🐅 🐒 🐘 🦎 🌳 🌿 🍃 🗿 🏆
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load the comprehensive JavaScript -->
+    <script src="java-jungle-adventure.js"></script>
+</body>
+</html>
